@@ -1,0 +1,300 @@
+ BASIC COMMANDS CHEAT SHEET
+
+Git
+Installation
+Windows:
+bash# Download from https://git-scm.com/download/win and install
+# OR using Chocolatey
+choco install git
+macOS:
+bash# Using Homebrew
+brew install git
+Linux (Debian/Ubuntu):
+bashsudo apt update
+sudo apt install git
+Configuration
+bash# Set username and email
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+# View configuration
+git config --list
+Basic Usage
+bash# Initialize repository
+git init
+
+# Clone repository
+git clone <repository-url>
+
+# Check status
+git status
+
+# Stage files
+git add <file>
+git add .  # Add all files
+
+# Commit changes
+git commit -m "Commit message"
+
+# Push changes
+git push origin <branch-name>
+
+# Pull changes
+git pull origin <branch-name>
+
+# Create and switch to new branch
+git checkout -b <branch-name>
+
+# Switch branch
+git checkout <branch-name>
+
+# List branches
+git branch
+
+# Merge branches
+git merge <branch-name>
+
+# View commit history
+git log
+Docker
+Installation
+Windows/macOS:
+# Download Docker Desktop from https://www.docker.com/products/docker-desktop/
+Linux (Debian/Ubuntu):
+bashsudo apt update
+sudo apt install docker.io
+sudo systemctl enable --now docker
+sudo usermod -aG docker $USER  # Add user to docker group
+Basic Usage
+bash# Check Docker version
+docker --version
+
+# Run container
+docker run <image-name>
+
+# List running containers
+docker ps
+
+# List all containers (including stopped)
+docker ps -a
+
+# Stop container
+docker stop <container-id/name>
+
+# Remove container
+docker rm <container-id/name>
+
+# List images
+docker images
+
+# Remove image
+docker rmi <image-id/name>
+
+# Build image from Dockerfile
+docker build -t <name:tag> .
+
+# Run container with port mapping
+docker run -p <host-port>:<container-port> <image-name>
+
+# Run container in background
+docker run -d <image-name>
+
+# View container logs
+docker logs <container-id/name>
+
+# Execute command in running container
+docker exec -it <container-id/name> <command>
+Terraform
+Installation
+Windows:
+powershell# Using Chocolatey
+choco install terraform
+
+# Or download from https://www.terraform.io/downloads.html
+macOS:
+bash# Using Homebrew
+brew install terraform
+Linux:
+bash# Download and unzip
+wget https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip
+unzip terraform_1.6.6_linux_amd64.zip
+sudo mv terraform /usr/local/bin/
+Basic Usage
+bash# Initialize Terraform in your project directory
+terraform init
+
+# Format Terraform code
+terraform fmt
+
+# Validate Terraform code
+terraform validate
+
+# Preview changes
+terraform plan
+
+# Apply changes
+terraform apply
+
+# Apply without asking for confirmation
+terraform apply -auto-approve
+
+# Destroy infrastructure
+terraform destroy
+
+# Import existing infrastructure
+terraform import <resource_type.resource_name> <existing_resource_id>
+
+# Show state
+terraform state list
+terraform state show <resource_address>
+Minikube
+Installation
+Windows:
+powershell# Using Chocolatey
+choco install minikube
+
+# Or download from https://minikube.sigs.k8s.io/docs/start/
+macOS:
+bash# Using Homebrew
+brew install minikube
+Linux:
+bashcurl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+Basic Usage
+bash# Start Minikube
+minikube start
+
+# Check status
+minikube status
+
+# Stop Minikube
+minikube stop
+
+# Delete Minikube cluster
+minikube delete
+
+# Access Kubernetes dashboard
+minikube dashboard
+
+# Get Minikube IP
+minikube ip
+
+# SSH into Minikube VM
+minikube ssh
+
+# Start with specific VM driver
+minikube start --driver=<driver_name>
+
+# Configure kubectl to use Minikube
+kubectl config use-context minikube
+
+# Enable addons
+minikube addons list
+minikube addons enable <addon_name>
+kubectl (Kubernetes CLI)
+Installation
+Windows:
+powershell# Using Chocolatey
+choco install kubernetes-cli
+
+# Or download from https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
+macOS:
+bash# Using Homebrew
+brew install kubectl
+Linux:
+bashcurl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+Basic Usage
+bash# View cluster info
+kubectl cluster-info
+
+# Get list of nodes
+kubectl get nodes
+
+# Get all pods
+kubectl get pods
+
+# Get all services
+kubectl get services
+
+# Create resources from file
+kubectl apply -f <filename.yaml>
+
+# Delete resources
+kubectl delete -f <filename.yaml>
+
+# Get pod logs
+kubectl logs <pod-name>
+
+# Execute command in pod
+kubectl exec -it <pod-name> -- <command>
+
+# Port forward to pod
+kubectl port-forward <pod-name> <local-port>:<pod-port>
+
+# View resource details
+kubectl describe <resource-type> <resource-name>
+Jenkins
+Installation
+Docker:
+bashdocker run -d -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts
+Windows:
+# Download from https://www.jenkins.io/download/ and follow installation wizard
+macOS:
+bashbrew install jenkins-lts
+Linux (Debian/Ubuntu):
+bashwget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt update
+sudo apt install jenkins
+sudo systemctl start jenkins
+Basic Usage
+bash# Start Jenkins (if installed as service)
+sudo systemctl start jenkins
+
+# Stop Jenkins
+sudo systemctl stop jenkins
+
+# Restart Jenkins
+sudo systemctl restart jenkins
+
+# Check status
+sudo systemctl status jenkins
+
+# Get initial admin password (after installation)
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+# CLI commands (after installing Jenkins CLI)
+java -jar jenkins-cli.jar -s http://localhost:8080/ -auth username:password <command>
+
+# Create a new job via CLI
+java -jar jenkins-cli.jar -s http://localhost:8080/ -auth username:password create-job <job-name> < job-config.xml
+
+# Build a job via CLI
+java -jar jenkins-cli.jar -s http://localhost:8080/ -auth username:password build <job-name>
+Jenkins Pipeline Examples
+groovy// Basic Jenkinsfile
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+                // Add build commands here
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+                // Add test commands here
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+                // Add deployment commands here
+            }
+        }
+    }
+}
